@@ -1,9 +1,11 @@
 require_relative 'card'
 
 class Deck
-  @cards = []
+  attr_accessor :cards
 
   def initialize
+    @cards = []
+    puts self.cards
     create_deck
   end
 
@@ -23,9 +25,9 @@ class Deck
   def create_deck
     suites = %i(hearts diamonds clubs spades)
     ranks = %i(ace two three four five six seven eight nine ten jack queen king)
-    suites.each do |suite|
+    suites.each do |suit|
       ranks.each do |rank|
-        @cards << Card.new(rank, suit)
+        self.cards << Card.new(rank, suit)
       end
     end
   end

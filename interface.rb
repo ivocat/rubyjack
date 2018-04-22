@@ -1,8 +1,11 @@
 class Interface
   attr_reader :house
 
-  def execute(house)
+  def initialize(house)
     @house = house
+  end
+
+  def execute
     get_player_name
     play_game
   end
