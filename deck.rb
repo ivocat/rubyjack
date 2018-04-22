@@ -5,19 +5,15 @@ class Deck
 
   def initialize
     @cards = []
-    puts self.cards
     create_deck
+    shuffle
   end
 
   def shuffle
+    @cards.shuffle!
   end
 
   def get_top_card
-  end
-
-  def prepare_deck
-    create_deck
-    shuffle
   end
 
   protected

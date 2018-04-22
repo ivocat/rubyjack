@@ -1,4 +1,7 @@
+require_relative 'player_methods'
+
 class Player
+  include PlayerMethods
   attr_reader :name, :balance
 
   def initialize(name)

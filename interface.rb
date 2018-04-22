@@ -19,5 +19,6 @@ class Interface
   def play_game
     house.add_inteface(self)
     house.play_game
+    #repeat_prompt
   end
 end

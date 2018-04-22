@@ -25,7 +25,8 @@ class House
   protected
 
   def game
-    #call bets
+    call_bets
+    deal_cards
     #deal
     #move
     #evaluate
