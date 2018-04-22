@@ -5,7 +5,11 @@ class Dealer
   def initialize
     @balance = 100
     @deck = Deck.new
-    @deck.shuffle
+    shuffle_deck
+  end
+
+  def call_bet
+    @balance -= 10
   end
 
   protected

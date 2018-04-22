@@ -26,6 +26,7 @@ class Interface
     #deal
     #move
     #evaluate
+    #award
     #repeat
   end
 end
