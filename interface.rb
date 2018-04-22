@@ -14,19 +14,7 @@ class Interface
   end
 
   def play_game
-    loop do
-      game
-    end
-  end
-
-  protected
-
-  def game
-    #call bets
-    #deal
-    #move
-    #evaluate
-    #award
-    #repeat
+    house.add_inteface(self)
+    house.play_game
   end
 end
