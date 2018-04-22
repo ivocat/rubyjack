@@ -2,12 +2,18 @@ class Deck
   @cards = []
 
   def initialize
+    create_deck
   end
 
   def shuffle
   end
 
   def get_top_card
+  end
+
+  def prepare_deck
+    create_deck
+    shuffle
   end
 
   protected
