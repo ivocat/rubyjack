@@ -14,6 +14,7 @@ class Deck
   end
 
   def get_top_card
+    @cards.pop
   end
 
   protected
