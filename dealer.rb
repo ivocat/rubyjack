@@ -8,15 +8,6 @@ class Dealer
     @deck.shuffle
   end
 
-  def game
-    #shuffle
-    #call bets
-    #deal
-    #move
-    #evaluate
-    #repeat
-  end
-
   protected
 
   def shuffle_deck
