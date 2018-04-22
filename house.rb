@@ -10,6 +10,7 @@ class House
 
   def create_player(name)
     @player = Player.new(name)
+    @dealer.introduce_player(@player)
   end
 
   def play_game
@@ -37,5 +38,9 @@ class House
   def call_bets
     @dealer.call_bet
     @player.call_bet
+  end
+
+  def deal_cards
+    @dealer.first_deal
   end
 end

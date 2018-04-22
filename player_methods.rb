@@ -5,7 +5,7 @@ module PlayerMethods
     @balance -= 10
   end
 
-  def get_cards(card)
+  def get_card(card)
     @hand ||= []
     @hand << card
   end
