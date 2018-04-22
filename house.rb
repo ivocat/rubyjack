@@ -1,7 +1,6 @@
 class House
-  def open
+  def initialize
     @dealer = Dealer.new
-    @player = Player.new
   end
 
   def create_player(name)
