@@ -1,3 +1,6 @@
+require_relative 'dealer'
+require_relative 'player'
+
 class House
   attr_reader :interface
 

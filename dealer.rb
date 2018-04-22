@@ -1,3 +1,5 @@
+require_relative 'deck'
+
 class Dealer
   attr_accessor :move_number
   attr_reader :balance, :deck
