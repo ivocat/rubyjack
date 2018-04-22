@@ -1,12 +1,16 @@
 module PlayerMethods
-  attr_reader :balance, :hand
+  attr_reader :bank
 
   def call_bet
-    @balance -= 10
+    @bank -= 10
   end
 
   def get_card(card)
     @hand ||= []
     @hand << card
+  end
+
+  def hand_value
+    #value calculation here
   end
 end

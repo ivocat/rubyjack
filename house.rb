@@ -2,7 +2,7 @@ require_relative 'dealer'
 require_relative 'player'
 
 class House
-  attr_reader :interface
+  attr_reader :interface, :player, :dealer
 
   def initialize
     @dealer = Dealer.new
@@ -14,9 +14,10 @@ class House
   end
 
   def play_game
-    loop do
+    while @dealer.bank > 0 && @player.bank > 0
       game
     end
+  interface.endgame_prompt
   end
 
   def add_inteface(interface)
@@ -28,6 +29,7 @@ class House
   def game
     call_bets
     deal_cards
+    players_move
     #deal
     #move
     #evaluate
@@ -42,5 +44,10 @@ class House
 
   def deal_cards
     @dealer.first_deal
+  end
+
+  def players_move
+    interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
+    #request action
   end
 end

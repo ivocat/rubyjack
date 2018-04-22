@@ -13,7 +13,7 @@ class Deck
     @cards.shuffle!
   end
 
-  def get_top_card
+  def deal_top_card
     @cards.pop
   end
 

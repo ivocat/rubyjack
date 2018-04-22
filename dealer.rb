@@ -4,10 +4,10 @@ require_relative 'player_methods'
 class Dealer
   include PlayerMethods
   attr_accessor :move_number
-  attr_reader :deck
+  attr_reader :deck, :bank
 
   def initialize
-    @balance = 100
+    @bank = 100
     @deck = Deck.new
   end
 
@@ -16,7 +16,7 @@ class Dealer
   end
 
   def call_bet
-    @balance -= 10
+    @bank -= 10
   end
 
   def shuffle_deck
@@ -25,9 +25,17 @@ class Dealer
 
   def first_deal
     2.times do
-      self.get_card(@deck.get_top_card)
-      @player.get_card(@deck.get_top_card)
+      self.get_card(@deck.deal_top_card)
+      @player.get_card(@deck.deal_top_card)
     end
+  end
+
+  def reveal_hand
+    @hand
+  end
+
+  def hand_size
+    @hand.length
   end
 
   protected
