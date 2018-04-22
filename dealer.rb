@@ -2,9 +2,10 @@ class Dealer
   attr_accessor :move_number
   attr_reader :balance, :deck
 
-  def initialize(deck)
+  def initialize
     @balance = 100
-    @deck = deck
+    @deck = Deck.new
+    @deck.shuffle
   end
 
   def game
@@ -19,6 +20,7 @@ class Dealer
   protected
 
   def shuffle_deck
+    deck.shuffle
   end
 
   def call_bets

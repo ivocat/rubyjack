@@ -1,7 +1,6 @@
 class House
   def open
-    @deck = Deck.new
-    @dealer = Dealer.new(@deck)
+    @dealer = Dealer.new
     @player = Player.new
   end
 
