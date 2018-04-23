@@ -48,6 +48,13 @@ class House
 
   def players_move
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
-    #request action
+    case action = interface.request_action(@player.hand.size)
+    when 1
+      #skip turn
+    when 2
+      #reveal cards
+    else
+      #draw a card
+    end
   end
 end

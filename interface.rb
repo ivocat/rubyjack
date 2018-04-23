@@ -32,6 +32,23 @@ class Interface
     print "\n #{@house.player.name}'s points: #{@house.player.hand_value}\n"
   end
 
+  def request_action(hand_size)
+    no_of_options = 2
+    no_of_options += 1 if hand_size == 2
+    puts "Choose what to do:"
+    puts "1. Skip turn"
+    puts "2. Reveal cards"
+    puts "3. Draw a card" if hand_size == 2
+    print "> "
+    loop do
+      action = gets.to_i
+      break if action.between?(1, no_of_options)
+      puts "Wrong input. Try again:"
+      print "> "
+    end
+    action
+  end
+
   def endgame_prompt
     if house.player.bank == 0
       puts "\nYou have won!"
