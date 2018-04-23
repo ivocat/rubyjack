@@ -44,4 +44,8 @@ class Card
   def short_name
     self.class.rank_letter(@rank).to_s + self.class.suit_symbol[suit]
   end
+
+  def value
+    self.class.rank_value[@rank]
+  end
 end

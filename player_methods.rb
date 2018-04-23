@@ -11,6 +11,15 @@ module PlayerMethods
   end
 
   def hand_value
-    #value calculation here
+    value = 0
+    @hand.each do |card|
+      if card.rank == :ace
+        value += 11 if value + 11 <= 21
+        value += 1 if value + 11 > 21
+      else
+        value += card.value
+      end
+    end
+    value
   end
 end
