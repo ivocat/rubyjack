@@ -29,7 +29,7 @@ class Interface
     house.player.hand.each do |card|
       print card.short_name + " "
     end
-    print "\n #{@house.player.name}'s points: #{@house.player.hand_value}"
+    print "\n #{@house.player.name}'s points: #{@house.player.hand_value}\n"
   end
 
   def endgame_prompt
