@@ -1,8 +1,10 @@
 module PlayerMethods
   attr_reader :bank
 
+  BET_SIZE = 10
+
   def call_bet
-    @bank -= 10
+    @bank -= BET_SIZE
   end
 
   def get_card(card)
