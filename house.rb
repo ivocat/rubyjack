@@ -2,7 +2,7 @@ require_relative 'dealer'
 require_relative 'player'
 
 class House
-  attr_reader :interface, :player, :dealer
+  attr_reader :interface, :player, :dealer, :round_end
 
   def initialize
     @dealer = Dealer.new
@@ -14,6 +14,7 @@ class House
   end
 
   def play_game
+    @round_end = false
     while @dealer.bank > 0 && @player.bank > 0
       game
     end
@@ -29,7 +30,10 @@ class House
   def game
     call_bets
     deal_cards
-    players_move
+    while !round_end
+      players_move
+      evaluate
+    end
     #deal
     #move
     #evaluate
@@ -52,7 +56,7 @@ class House
     when 1
       #skip turn
     when 2
-      #reveal cards
+      @round_end = true #reveal cards
     else
       #draw a card
     end
