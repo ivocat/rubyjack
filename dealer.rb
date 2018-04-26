@@ -25,9 +25,17 @@ class Dealer
 
   def first_deal
     2.times do
-      self.get_card(@deck.deal_top_card)
-      @player.get_card(@deck.deal_top_card)
+      deal_to_self
+      deal_to_player
     end
+  end
+
+  def deal_to_self
+    self.get_card(@deck.deal_top_card)
+  end
+
+  def deal_to_player
+    @player.get_card(@deck.deal_top_card)
   end
 
   def reveal_hand
