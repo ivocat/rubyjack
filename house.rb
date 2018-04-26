@@ -54,11 +54,19 @@ class House
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
     case action = interface.request_action(@player.hand.size)
     when 1
-      #skip turn
+      return #skip turn
     when 2
       @round_end = true #reveal cards
     else
-      #draw a card
+      @dealer.deal_to_player #draw a card
+    end
+  end
+
+  def evaluate
+    if round_end
+      #calculate points and award the winner
+    else
+      #repeat_round
     end
   end
 end
