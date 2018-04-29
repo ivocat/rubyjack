@@ -41,6 +41,7 @@ class Interface
     puts "2. Reveal cards"
     puts "3. Draw a card" if hand_size == 2
     print "> "
+    action = 0
     loop do
       action = gets.to_i
       break if action.between?(1, no_of_options)
