@@ -25,6 +25,7 @@ class Interface
   def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards)
     print "\n Dealer's bank: #{dealers_bank}"
     print "\n Dealer's hand: " + "XX " * dealers_no_of_cards
+    print "\n\n #{@house.player.name}'s bank: #{players_bank}"
     print "\n #{@house.player.name}'s hand: "
     house.player.hand.each do |card|
       print card.short_name + " "
