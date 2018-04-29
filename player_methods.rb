@@ -14,12 +14,14 @@ module PlayerMethods
 
   def hand_value
     value = 0
+    aces_in_hand = 0
     @hand.each do |card|
-      if card.rank == :ace
-        value += 11 if value + 11 <= 21
-        value += 1 if value + 11 > 21
-      else
-        value += card.value
+      value += card.value
+      aces_in_hand += 1 if card.rank == :ace
+    end
+    aces_in_hand.times do
+      if value > 21
+        value -= 10
       end
     end
     value
