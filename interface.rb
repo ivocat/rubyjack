@@ -36,7 +36,7 @@ class Interface
   def request_action(hand_size)
     no_of_options = 2
     no_of_options += 1 if hand_size == 2
-    puts "Choose what to do:"
+    puts "\nChoose what to do:"
     puts "1. Skip turn"
     puts "2. Reveal cards"
     puts "3. Draw a card" if hand_size == 2
