@@ -69,10 +69,6 @@ class House
   end
 
   def evaluate
-    if in_round
-      #repeat_round
-    else
-      #calculate points and award the winner
-    end
+    #calculate points and award the winner
   end
 end
