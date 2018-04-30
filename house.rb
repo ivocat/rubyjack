@@ -2,7 +2,7 @@ require_relative 'dealer'
 require_relative 'player'
 
 class House
-  attr_reader :interface, :player, :dealer, :in_round
+  attr_reader :interface, :player, :dealer
 
   def initialize
     @dealer = Dealer.new
@@ -29,11 +29,12 @@ class House
   def round
     call_bets
     deal_cards
-    @in_round = true
-    while in_round
+    players_move
+    if @second_move
+      dealers_move
       players_move
-      evaluate
     end
+    evaluate
     #deal
     #move
     #evaluate
@@ -52,14 +53,19 @@ class House
 
   def players_move
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
-    case action = interface.request_action(@player.hand.size)
-    when 1
-      return #skip turn
-    when 2
-      @in_round = false #reveal cards
-    else
+    case action = interface.request_action(@player.hand.size, @second_move ||= false)
+    when :skip
+      @second_move = true #skip turn
+    when :reveal
+      @second_move = false #reveal cards
+    else #when :draw
       @dealer.deal_to_player #draw a card
+      @second_move = true
     end
+  end
+
+  def dealers_move
+    # move
   end
 
   def evaluate

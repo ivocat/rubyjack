@@ -1,6 +1,12 @@
 class Interface
   attr_reader :house
 
+  @@player_actions = {
+    reveal: 'Reveal cards',
+    skip: 'Skip turn',
+    draw: 'Draw a card',
+  }
+
   def initialize(house)
     @house = house
   end
@@ -33,22 +39,27 @@ class Interface
     print "\n #{@house.player.name}'s points: #{@house.player.hand_value}\n"
   end
 
-  def request_action(hand_size)
-    no_of_options = 2
-    no_of_options += 1 if hand_size == 2
+  def request_action(hand_size, second_move)
+    options = [:draw, :reveal, :skip]
+    options.pop if second_move
+    options.delete(:draw) if hand_size == 3
+    options_index = {}
+
     puts "\nChoose what to do:"
-    puts "1. Skip turn"
-    puts "2. Reveal cards"
-    puts "3. Draw a card" if hand_size == 2
-    print "> "
+    options.each.with_index(1) do |option, index|
+      puts "#{index}. #{@@player_actions[option]}."
+      options_index[index] = option
+    end
+
     action = 0
+
     loop do
       action = gets.to_i
-      break if action.between?(1, no_of_options)
+      break if action.between?(1, options.length)
       puts "Wrong input. Try again:"
       print "> "
     end
-    action
+    options_index[action]
   end
 
   def endgame_prompt
