@@ -29,14 +29,12 @@ class Interface
   end
 
   def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards)
-    print "\n Dealer's bank: #{dealers_bank}"
-    print "\n Dealer's hand: " + "XX " * dealers_no_of_cards
-    print "\n\n #{@house.player.name}'s bank: #{players_bank}"
-    print "\n #{@house.player.name}'s hand: "
+    print "\n Dealer: $#{dealers_bank} | " + "XX " * dealers_no_of_cards
+    print "\n\n #{@house.player.name}: $#{players_bank} | "
     house.player.hand.each do |card|
       print card.short_name + " "
     end
-    print "\n #{@house.player.name}'s points: #{@house.player.hand_value}\n"
+    print " (#{@house.player.hand_value} pts.)\n"
   end
 
   def request_action(hand_size, second_move)
