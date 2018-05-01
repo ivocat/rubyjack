@@ -65,10 +65,10 @@ class House
   end
 
   def end_round
-    if @player.hand.value == @dealer.hand.value && @player.hand_value <= 21
+    if @player.hand_value == @dealer.hand_value && @player.hand_value <= 21
       @player.award
       @dealer.award
-    elsif @player.hand.value > @dealer.hand.value && @player.hand_value <= 21
+    elsif @player.hand_value > @dealer.hand_value && @player.hand_value <= 21
       2.times { @player.award }
     else
       2.times { @dealer.award }

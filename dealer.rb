@@ -45,19 +45,4 @@ class Dealer
   def hand_size
     @hand.length
   end
-
-  protected
-
-  def call_bets
-    #should address players' wallets via methods
-  end
-
-  def deal
-  end
-
-  def move
-  end
-
-  def evaluate_game
-  end
 end
