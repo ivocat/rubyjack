@@ -29,6 +29,7 @@ class Interface
   end
 
   def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards, reveal = false)
+    puts "\n   SHOWDOWN   \n" if reveal
     print "\n Dealer: $#{dealers_bank} | "
     if reveal
       show_actors_cards(@house.dealer)
@@ -57,15 +58,9 @@ class Interface
       puts "#{index}. #{@@player_actions[option]}."
       options_index[index] = option
     end
+    print "> "
 
-    action = 0
-
-    loop do
-      action = gets.to_i
-      break if action.between?(1, options.length)
-      puts "Wrong input. Try again:"
-      print "> "
-    end
+    action = option_chooser(options.length)
     options_index[action]
   end
 
@@ -79,9 +74,30 @@ class Interface
 
   def endgame_prompt
     if house.player.bank == 0
-      puts "\nYou have won!"
+      puts "\nDealer has won the game."
     else
-      puts "\nDealer has won."
+      puts "\nYou have won the game!"
     end
+    puts "\n Would you like to start over?\n1.Yes\n2.No"
+    print "> "
+    input = option_chooser(2)
+    if input == 1
+      play_game
+    else
+      exit
+    end
+  end
+
+  protected
+
+  def option_chooser(no_of_options)
+    input = 0
+    loop do
+      input = gets.to_i
+      break if input.between?(1, no_of_options)
+      puts "Wrong input. Try again:"
+      print "> "
+    end
+    input
   end
 end
