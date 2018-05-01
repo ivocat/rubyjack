@@ -42,7 +42,7 @@ class House
     players_move
     if @second_move
       dealers_move
-      players_move
+      players_move unless [@player.hand_size, @dealer.hand_size].min == 3
     end
     end_round
     return_cards
