@@ -37,12 +37,4 @@ class Dealer
   def deal_to_player
     @player.get_card(@deck.deal_top_card)
   end
-
-  def reveal_hand
-    @hand
-  end
-
-  def hand_size
-    @hand.length
-  end
 end

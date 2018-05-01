@@ -34,4 +34,8 @@ module PlayerMethods
   def award
     @bank += BET_SIZE
   end
+
+  def hand_size
+    @hand.length
+  end
 end

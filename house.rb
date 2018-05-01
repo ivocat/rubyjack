@@ -49,7 +49,7 @@ class House
 
   def players_move
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
-    case action = interface.request_action(@player.hand.size, @second_move ||= false)
+    case action = interface.request_action(@player.hand_size, @second_move ||= false)
     when :skip
       @second_move = true #skip turn
     when :reveal
