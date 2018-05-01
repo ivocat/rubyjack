@@ -38,6 +38,10 @@ class Dealer
     @player.get_card(@deck.deal_top_card)
   end
 
+  def play_move
+    deal_to_self if self.hand_value < 17
+  end
+
   def collect_cards
     [@player, self].each do |party|
       party.hand_size.times do

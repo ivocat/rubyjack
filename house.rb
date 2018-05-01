@@ -61,7 +61,7 @@ class House
   end
 
   def dealers_move
-    # move
+    @dealer.play_move
   end
 
   def end_round
