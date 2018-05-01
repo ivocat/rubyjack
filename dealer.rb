@@ -20,7 +20,7 @@ class Dealer
   end
 
   def shuffle_deck
-    deck.shuffle
+    @deck.shuffle
   end
 
   def first_deal
@@ -48,5 +48,6 @@ class Dealer
         @deck.cards << party.return_card
       end
     end
+    @deck.shuffle
   end
 end
