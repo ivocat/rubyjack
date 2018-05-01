@@ -69,6 +69,14 @@ class Interface
     options_index[action]
   end
 
+  def announce_round_winner(winner)
+    if winner == :noone
+      puts "\nDraw!"
+    else
+      puts "\n#{winner.capitalize} has won!"
+    end
+  end
+
   def endgame_prompt
     if house.player.bank == 0
       puts "\nYou have won!"

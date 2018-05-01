@@ -69,11 +69,15 @@ class House
     if @player.hand_value == @dealer.hand_value && @player.hand_value <= 21
       @player.award
       @dealer.award
+      winner = :noone
     elsif @player.hand_value > @dealer.hand_value && @player.hand_value <= 21
       2.times { @player.award }
+      winner = :player
     else
       2.times { @dealer.award }
+      winner = :dealer
     end
+    interface.announce_round_winner(winner)
   end
 
   def return_cards
