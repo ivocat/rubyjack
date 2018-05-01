@@ -24,7 +24,8 @@ class Interface
     else
       print "XX " * dealers_no_of_cards
     end
-    print "\n\n #{@house.player.name}: $#{players_bank} | "
+    print " (#{@house.dealer.hand_value} pts.)" if reveal
+    print "\n #{@house.player.name}: $#{players_bank} | "
     show_actors_cards(@house.player)
     print " (#{@house.player.hand_value} pts.)\n"
   end
@@ -50,8 +51,9 @@ class Interface
     if winner == :noone
       puts "\nDraw!"
     else
-      puts "\n#{winner.capitalize} has won!"
+      puts "\n#{winner.capitalize} has won the round!"
     end
+    puts "\n\n   NEW ROUND   \n" if @house.game_is_on?
   end
 
   def endgame_prompt

@@ -14,7 +14,7 @@ class House
   end
 
   def play_game
-    while [@dealer.bank, @player.bank].min > 0
+    while game_is_on?
       round
     end
   interface.endgame_prompt
@@ -22,6 +22,10 @@ class House
 
   def add_inteface(interface)
     @interface = interface
+  end
+
+  def game_is_on?
+    [@dealer.bank, @player.bank].min > 0
   end
 
   protected
