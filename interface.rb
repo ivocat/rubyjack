@@ -16,18 +16,6 @@ class Interface
     play_game
   end
 
-  def get_player_name
-    puts "Enter player's name:"
-    name = gets.chomp.capitalize
-    house.create_player(name)
-  end
-
-  def play_game
-    house.add_inteface(self)
-    house.play_game
-    #repeat_prompt
-  end
-
   def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards, reveal = false)
     puts "\n   SHOWDOWN   \n" if reveal
     print "\n Dealer: $#{dealers_bank} | "
@@ -39,12 +27,6 @@ class Interface
     print "\n\n #{@house.player.name}: $#{players_bank} | "
     show_actors_cards(@house.player)
     print " (#{@house.player.hand_value} pts.)\n"
-  end
-
-  def show_actors_cards(actor)
-    actor.hand.each do |card|
-      print card.short_name + " "
-    end
   end
 
   def request_action(hand_size, second_move)
@@ -89,6 +71,23 @@ class Interface
   end
 
   protected
+
+  def play_game
+    house.add_inteface(self)
+    house.play_game
+  end
+
+  def show_actors_cards(actor)
+    actor.hand.each do |card|
+      print card.short_name + " "
+    end
+  end
+
+  def get_player_name
+    puts "Enter player's name:"
+    name = gets.chomp.capitalize
+    house.create_player(name)
+  end
 
   def option_chooser(no_of_options)
     input = 0
