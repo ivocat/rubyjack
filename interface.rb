@@ -28,13 +28,22 @@ class Interface
     #repeat_prompt
   end
 
-  def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards)
-    print "\n Dealer: $#{dealers_bank} | " + "XX " * dealers_no_of_cards
+  def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards, reveal = false)
+    print "\n Dealer: $#{dealers_bank} | "
+    if reveal
+      show_actors_cards(@house.dealer)
+    else
+      print "XX " * dealers_no_of_cards
+    end
     print "\n\n #{@house.player.name}: $#{players_bank} | "
-    house.player.hand.each do |card|
+    show_actors_cards(@house.player)
+    print " (#{@house.player.hand_value} pts.)\n"
+  end
+
+  def show_actors_cards(actor)
+    actor.hand.each do |card|
       print card.short_name + " "
     end
-    print " (#{@house.player.hand_value} pts.)\n"
   end
 
   def request_action(hand_size, second_move)

@@ -2,7 +2,7 @@ require_relative 'player_methods'
 
 class Player
   include PlayerMethods
-  attr_reader :name, :bank, :hand
+  attr_reader :name, :bank
 
   def initialize(name)
     @name = name

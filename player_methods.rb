@@ -1,5 +1,5 @@
 module PlayerMethods
-  attr_reader :bank
+  attr_reader :bank, :hand
 
   BET_SIZE = 10
 

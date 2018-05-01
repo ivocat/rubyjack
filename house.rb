@@ -65,6 +65,7 @@ class House
   end
 
   def end_round
+    interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand, true)
     if @player.hand_value == @dealer.hand_value && @player.hand_value <= 21
       @player.award
       @dealer.award
