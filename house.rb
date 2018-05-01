@@ -34,12 +34,8 @@ class House
       dealers_move
       players_move
     end
-    evaluate
-    #deal
-    #move
-    #evaluate
-    #award
-    #repeat
+    end_round
+    return_cards
   end
 
   def call_bets
@@ -68,7 +64,18 @@ class House
     # move
   end
 
-  def evaluate
-    #calculate points and award the winner
+  def end_round
+    if @player.hand.value == @dealer.hand.value && @player.hand_value <= 21
+      @player.award
+      @dealer.award
+    elsif @player.hand.value > @dealer.hand.value && @player.hand_value <= 21
+      2.times { @player.award }
+    else
+      2.times { @dealer.award }
+    end
+  end
+
+  def return_cards
+    #players return cards to deck
   end
 end

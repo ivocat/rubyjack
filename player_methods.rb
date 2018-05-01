@@ -12,6 +12,10 @@ module PlayerMethods
     @hand << card
   end
 
+  def return_card
+    @hand.pop
+  end
+
   def hand_value
     value = 0
     aces_in_hand = 0
@@ -25,5 +29,9 @@ module PlayerMethods
       end
     end
     value
+  end
+
+  def award
+    @bank += BET_SIZE
   end
 end
