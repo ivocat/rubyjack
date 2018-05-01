@@ -66,7 +66,7 @@ class Interface
     print "> "
     input = option_chooser(2)
     if input == 1
-      play_game
+      house.start_over
     else
       exit
     end

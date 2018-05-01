@@ -38,4 +38,8 @@ module PlayerMethods
   def hand_size
     @hand.length
   end
+
+  def refill_bank
+    @bank = 100
+  end
 end

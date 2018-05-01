@@ -28,6 +28,12 @@ class House
     [@dealer.bank, @player.bank].min > 0
   end
 
+  def start_over
+    @player.refill_bank
+    @dealer.refill_bank
+    play_game
+  end
+
   protected
 
   def round
