@@ -76,6 +76,6 @@ class House
   end
 
   def return_cards
-    #players return cards to deck
+    @dealer.collect_cards
   end
 end

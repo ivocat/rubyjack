@@ -37,4 +37,12 @@ class Dealer
   def deal_to_player
     @player.get_card(@deck.deal_top_card)
   end
+
+  def collect_cards
+    [@player, self].each do |party|
+      party.hand_size.times do
+        @deck.cards << party.return_card
+      end
+    end
+  end
 end
