@@ -1,10 +1,8 @@
 class BasicPlayer
   attr_reader :bank, :hand
 
-  BET_SIZE = 10
-
-  def call_bet
-    @bank -= BET_SIZE
+  def call_bet(bet_size)
+    @bank -= bet_size
   end
 
   def get_card(card)
@@ -31,8 +29,8 @@ class BasicPlayer
     value
   end
 
-  def award
-    @bank += BET_SIZE
+  def award(reward_size)
+    @bank += reward_size
   end
 
   def hand_size

@@ -7,8 +7,4 @@ class Player < BasicPlayer
     @name = name
     @bank = 100
   end
-
-  def call_bet
-    @bank -= 10
-  end
 end

@@ -72,7 +72,7 @@ class Interface
     end
   end
 
-  protected
+  private
 
   def play_game
     house.add_inteface(self)

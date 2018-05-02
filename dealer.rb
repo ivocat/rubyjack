@@ -8,10 +8,6 @@ class Dealer < BasicPlayer
     @bank = 100
   end
 
-  def call_bet
-    @bank -= 10
-  end
-
   def needs_card
     false
     true if self.hand_value < 17

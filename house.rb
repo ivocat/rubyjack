@@ -4,6 +4,8 @@ require_relative 'player'
 class House
   attr_reader :interface, :player, :dealer
 
+  BET_SIZE = 10
+
   def initialize
     @dealer = Dealer.new
     @deck = Deck.new
@@ -15,9 +17,9 @@ class House
 
   def play_game
     while game_is_on?
-      round
+      play_round
     end
-  interface.endgame_prompt
+    interface.endgame_prompt
   end
 
   def add_inteface(interface)
@@ -25,7 +27,7 @@ class House
   end
 
   def game_is_on?
-    [@dealer.bank, @player.bank].min > 0
+    [@dealer.bank, @player.bank].none?(&:zero?)
   end
 
   def start_over
@@ -34,9 +36,9 @@ class House
     play_game
   end
 
-  protected
+  private
 
-  def round
+  def play_round
     call_bets
     deal_cards
     players_move
@@ -49,8 +51,8 @@ class House
   end
 
   def call_bets
-    @dealer.call_bet
-    @player.call_bet
+    @dealer.call_bet(BET_SIZE)
+    @player.call_bet(BET_SIZE)
   end
 
   def deal_cards
@@ -80,15 +82,15 @@ class House
   def end_round
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand, true)
     if @player.hand_value == @dealer.hand_value && @player.hand_value <= 21
-      @player.award
-      @dealer.award
+      @player.award(BET_SIZE)
+      @dealer.award(BET_SIZE)
       winner = :noone
     elsif ( @player.hand_value > @dealer.hand_value && @player.hand_value <= 21 )\
           || @dealer.hand_value > 21
-      2.times { @player.award }
+      @player.award(BET_SIZE * 2)
       winner = :player
     else
-      2.times { @dealer.award }
+      @dealer.award(BET_SIZE * 2)
       winner = :dealer
     end
     interface.announce_round_winner(winner)
