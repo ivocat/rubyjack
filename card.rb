@@ -1,9 +1,5 @@
 class Card
-  class << self
-    attr_reader :RANK_VALUE
-  end
-
-  @RANK_VALUE = {
+  RANK_VALUE = {
     'ace' => 11,
     'ten' => 10,
     'jack' => 10,
@@ -19,10 +15,10 @@ class Card
   end
 
   def rank_letter(rank)
-    if self.class.RANK_VALUE.fetch(rank, rank.to_i) >= 10
+    if RANK_VALUE.fetch(rank, rank.to_i) >= 10
       rank[0].upcase
     else
-      self.class.RANK_VALUE.fetch(rank, rank.to_i)
+      RANK_VALUE.fetch(rank, rank.to_i)
     end
   end
 
@@ -31,6 +27,6 @@ class Card
   end
 
   def value
-    self.class.RANK_VALUE.fetch(@rank, @rank.to_i)
+    RANK_VALUE.fetch(@rank, @rank.to_i)
   end
 end
