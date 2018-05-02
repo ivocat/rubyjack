@@ -21,7 +21,7 @@ module PlayerMethods
     aces_in_hand = 0
     @hand.each do |card|
       value += card.value
-      aces_in_hand += 1 if card.rank == :ace
+      aces_in_hand += 1 if card.rank == 'ace'
     end
     aces_in_hand.times do
       if value > 21
