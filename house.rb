@@ -64,7 +64,7 @@ class House
 
   def players_move
     interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
-    case action = interface.request_action(@player.hand_size, @second_move ||= false)
+    case action = interface.request_action(players_options)
     when :skip
       @second_move = true #skip turn
     when :reveal
@@ -75,12 +75,20 @@ class House
     end
   end
 
+  def players_options
+    players_options = [:draw, :reveal, :skip]
+    players_options.pop if ( @second_move ||= false )
+    players_options.delete(:draw) if @player.hand_size == 3
+    players_options
+  end
+
   def dealers_move
     @dealer.get_card(@deck.deal_top_card) if @dealer.needs_card
   end
 
   def end_round
-    interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand, true)
+    @dealer.hand_revealed = true
+    interface.show_desk(@dealer.bank, @dealer.hand_size, @player.bank, @player.hand)
     if @player.hand_value == @dealer.hand_value && @player.hand_value <= 21
       @player.award(BET_SIZE)
       @dealer.award(BET_SIZE)
@@ -103,5 +111,7 @@ class House
       end
     end
     @deck.shuffle
+    @dealer.hand_revealed = false
+    @second_move = false
   end
 end

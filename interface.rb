@@ -16,34 +16,35 @@ class Interface
     play_game
   end
 
-  def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards, reveal = false)
-    puts "\n   SHOWDOWN   \n" if reveal
+  def show_desk(dealers_bank, dealers_no_of_cards, players_bank, players_cards)
+    puts "\n   SHOWDOWN   \n" if @house.dealer.hand_revealed
     print "\n Dealer: $#{dealers_bank} | "
-    if reveal
+    if @house.dealer.hand_revealed
       show_actors_cards(@house.dealer)
     else
       print "XX " * dealers_no_of_cards
     end
-    print " (#{@house.dealer.hand_value} pts.)" if reveal
+    print " (#{@house.dealer.hand_value} pts.)" if @house.dealer.hand_revealed
     print "\n #{@house.player.name}: $#{players_bank} | "
     show_actors_cards(@house.player)
     print " (#{@house.player.hand_value} pts.)\n"
   end
 
-  def request_action(hand_size, second_move)
-    options = [:draw, :reveal, :skip]
-    options.pop if second_move
-    options.delete(:draw) if hand_size == 3
+  def request_action(options)
     options_index = {}
 
-    puts "\nChoose what to do:"
-    options.each.with_index(1) do |option, index|
-      puts "#{index}. #{@@player_actions[option]}."
-      options_index[index] = option
+    if options.size > 1
+      puts "\nChoose what to do:"
+      options.each.with_index(1) do |option, index|
+        puts "#{index}. #{@@player_actions[option]}."
+        options_index[index] = option
+      end
+      print "> "
+      action = option_chooser(options.length)
+    else
+      action = options.first
     end
-    print "> "
 
-    action = option_chooser(options.length)
     options_index[action]
   end
 
