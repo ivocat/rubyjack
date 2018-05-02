@@ -33,17 +33,13 @@ class Interface
   def request_action(options)
     options_index = {}
 
-    if options.size > 1
-      puts "\nChoose what to do:"
-      options.each.with_index(1) do |option, index|
-        puts "#{index}. #{@@player_actions[option]}."
-        options_index[index] = option
-      end
-      print "> "
-      action = option_chooser(options.length)
-    else
-      action = options.first
+    puts "\nChoose what to do:"
+    options.each.with_index(1) do |option, index|
+      puts "#{index}. #{@@player_actions[option]}."
+      options_index[index] = option
     end
+    print "> "
+    action = option_chooser(options.length)
 
     options_index[action]
   end

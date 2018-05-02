@@ -44,10 +44,15 @@ class House
     players_move
     if @second_move
       dealers_move
-      players_move unless [@player.hand_size, @dealer.hand_size].min == 3
+      players_move unless move_is_unnecessary?
     end
     end_round
     return_cards
+  end
+
+  def move_is_unnecessary?
+    [@player.hand_size, @dealer.hand_size].min == 3 || \
+    players_options.size == 1
   end
 
   def call_bets
