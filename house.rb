@@ -6,11 +6,11 @@ class House
 
   def initialize
     @dealer = Dealer.new
+    @deck = Deck.new
   end
 
   def create_player(name)
     @player = Player.new(name)
-    @dealer.introduce_player(@player)
   end
 
   def play_game
@@ -54,7 +54,10 @@ class House
   end
 
   def deal_cards
-    @dealer.first_deal
+    2.times do
+      @dealer.get_card(@deck.deal_top_card)
+      @player.get_card(@deck.deal_top_card)
+    end
   end
 
   def players_move
@@ -65,13 +68,13 @@ class House
     when :reveal
       @second_move = false #reveal cards
     else #when :draw
-      @dealer.deal_to_player #draw a card
+      @player.get_card(@deck.deal_top_card) #draw a card
       @second_move = true
     end
   end
 
   def dealers_move
-    @dealer.play_move
+    @dealer.get_card(@deck.deal_top_card) if @dealer.needs_card
   end
 
   def end_round
@@ -92,6 +95,11 @@ class House
   end
 
   def return_cards
-    @dealer.collect_cards
+    [@player, @dealer].each do |party|
+      party.hand_size.times do
+        @deck.cards << party.return_card
+      end
+    end
+    @deck.shuffle
   end
 end
