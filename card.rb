@@ -1,17 +1,9 @@
 class Card
   class << self
-    attr_reader :rank_value, :suit_symbol
-
-    def rank_letter(rank)
-      if self.rank_value[rank] >= 10
-        rank[0].upcase
-      else
-        self.rank_value[rank]
-      end
-    end
+    attr_reader :RANK_VALUE, :SUIT_SYMBOL
   end
 
-  @rank_value = {
+  @RANK_VALUE = {
     ace: 11,
     two: 2,
     three: 3,
@@ -27,7 +19,7 @@ class Card
     king: 10,
   }
 
-  @suit_symbol = {
+  @SUIT_SYMBOL = {
     hearts: '♥',
     diamonds: '♦',
     clubs: '♣',
@@ -41,11 +33,19 @@ class Card
     @suit = suit
   end
 
+  def rank_letter(rank)
+    if self.class.RANK_VALUE[rank] >= 10
+      rank[0].upcase
+    else
+      self.class.RANK_VALUE[rank]
+    end
+  end
+
   def short_name
-    self.class.rank_letter(@rank).to_s + self.class.suit_symbol[suit]
+    self.rank_letter(@rank).to_s + self.class.SUIT_SYMBOL[suit]
   end
 
   def value
-    self.class.rank_value[@rank]
+    self.class.RANK_VALUE[@rank]
   end
 end
