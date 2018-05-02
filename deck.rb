@@ -21,7 +21,7 @@ class Deck
 
   def create_deck
     suites = %i(hearts diamonds clubs spades)
-    ranks = %i(ace two three four five six seven eight nine ten jack queen king)
+    ranks = %w(ace 2 3 4 5 6 7 8 9 ten jack queen king)
     suites.each do |suit|
       ranks.each do |rank|
         self.cards << Card.new(rank, suit)

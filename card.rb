@@ -4,19 +4,19 @@ class Card
   end
 
   @RANK_VALUE = {
-    ace: 11,
-    two: 2,
-    three: 3,
-    four: 4,
-    five: 5,
-    six: 6,
-    seven: 7,
-    eight: 8,
-    nine: 9,
-    ten: 10,
-    jack: 10,
-    queen: 10,
-    king: 10,
+    'ace' => 11,
+    # two: 2,
+    # three: 3,
+    # four: 4,
+    # five: 5,
+    # six: 6,
+    # seven: 7,
+    # eight: 8,
+    # nine: 9,
+    'ten' => 10,
+    'jack' => 10,
+    'queen' => 10,
+    'king' => 10,
   }
 
   @SUIT_SYMBOL = {
@@ -34,10 +34,10 @@ class Card
   end
 
   def rank_letter(rank)
-    if self.class.RANK_VALUE[rank] >= 10
+    if self.class.RANK_VALUE.fetch(rank, rank.to_i) >= 10
       rank[0].upcase
     else
-      self.class.RANK_VALUE[rank]
+      self.class.RANK_VALUE.fetch(rank, rank.to_i)
     end
   end
 
@@ -46,6 +46,6 @@ class Card
   end
 
   def value
-    self.class.RANK_VALUE[@rank]
+    self.class.RANK_VALUE.fetch(@rank, @rank.to_i)
   end
 end
