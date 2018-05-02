@@ -1,10 +1,9 @@
 require_relative 'deck'
-require_relative 'player_methods'
+require_relative 'basic_player'
 
-class Dealer
-  include PlayerMethods
+class Dealer < BasicPlayer
   attr_accessor :move_number
-  attr_reader :deck, :bank
+  attr_reader :deck
 
   def initialize
     @bank = 100

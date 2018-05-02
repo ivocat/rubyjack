@@ -1,4 +1,4 @@
-module PlayerMethods
+class BasicPlayer
   attr_reader :bank, :hand
 
   BET_SIZE = 10

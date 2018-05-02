@@ -1,6 +1,6 @@
 class Card
   class << self
-    attr_reader :RANK_VALUE, :SUIT_SYMBOL
+    attr_reader :RANK_VALUE
   end
 
   @RANK_VALUE = {
@@ -9,13 +9,6 @@ class Card
     'jack' => 10,
     'queen' => 10,
     'king' => 10,
-  }
-
-  @SUIT_SYMBOL = {
-    hearts: '♥',
-    diamonds: '♦',
-    clubs: '♣',
-    spades: '♠',
   }
 
   attr_reader :rank, :suit
@@ -34,7 +27,7 @@ class Card
   end
 
   def short_name
-    self.rank_letter(@rank).to_s + self.class.SUIT_SYMBOL[suit]
+    self.rank_letter(@rank).to_s + @suit
   end
 
   def value

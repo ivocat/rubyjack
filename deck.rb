@@ -20,7 +20,7 @@ class Deck
   protected
 
   def create_deck
-    suites = %i(hearts diamonds clubs spades)
+    suites = %w(♥ ♦ ♣ ♠)
     ranks = %w(ace 2 3 4 5 6 7 8 9 ten jack queen king)
     suites.each do |suit|
       ranks.each do |rank|
