@@ -29,4 +29,12 @@ class Card
   def value
     RANK_VALUE.fetch(@rank, @rank.to_i)
   end
+
+  def alter_value
+    if @rank == 'ace'
+      1
+    else
+      value
+    end
+  end
 end

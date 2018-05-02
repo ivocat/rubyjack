@@ -15,18 +15,15 @@ class BasicPlayer
   end
 
   def hand_value
-    value = 0
-    aces_in_hand = 0
-    @hand.each do |card|
-      value += card.value
-      aces_in_hand += 1 if card.rank == 'ace'
-    end
-    aces_in_hand.times do
-      if value > 21
-        value -= 10
+    hand_value = 0
+    @hand.sort_by { |card| card.value }.each do |card|
+      if hand_value + card.value <= 21
+        hand_value += card.value
+      else
+        hand_value += card.alter_value
       end
     end
-    value
+    hand_value
   end
 
   def award(reward_size)
