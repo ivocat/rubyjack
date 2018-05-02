@@ -8,10 +8,6 @@ class Dealer < BasicPlayer
     @bank = 100
   end
 
-  def introduce_player(player)
-    @player = player
-  end
-
   def call_bet
     @bank -= 10
   end
